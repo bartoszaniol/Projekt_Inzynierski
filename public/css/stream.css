@@ -1,0 +1,21 @@
+.stream {
+    /* height: 500px;
+    display: flex;
+    justify-content: center; */
+    width: 40%;
+    margin: auto;
+    padding-top: 20px;
+    
+}
+
+.tytul {
+    /* text-align: center; */
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.relacja {
+    height: 600px;
+    border: 2px white solid;
+}

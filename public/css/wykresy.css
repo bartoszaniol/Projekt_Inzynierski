@@ -1,0 +1,37 @@
+.tytul {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.wykresy {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.wykres {
+    padding-right: 20px;
+    
+}
+
+.temp, .wilg {
+    padding-top: 8px;
+    display: flex;
+    border: white 2px solid;
+    width: 450px;
+    margin: 50px;
+}
+
+.wartosc {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+}

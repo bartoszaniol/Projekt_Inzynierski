@@ -4,7 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const mainRoute = require('./routes/main');
-const { readdirSync } = require('fs');
 
 const app = express();
 

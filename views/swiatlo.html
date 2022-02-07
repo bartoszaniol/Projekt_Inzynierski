@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiatlo</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arsenal&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/swiatlo.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+          <ul class="main-header__item_list">
+            <li class="main-header__item">
+              <a href="/" >Strona Glowna</a>
+            </li>
+            <li class="main-header__item"><a href="/dane">Ogólne dane</a></li>
+            <li class="main-header__item"><a href="/wykresy">Dane z wykresami</a></li>
+            <li class="main-header__item"><a href="/stream">Stream</a></li>
+            <li class="main-header__item"><a href="/swiatlo" class="active">Sterowanie światłem</a></li>
+          </ul>
+        </nav>
+      </header>
+  <main>
+    <label for="colorpicker">Wybierz kolor oświetlenia w szklarni:</label>
+    <input type="color" id="colorpicker" value="#0000ff">
+    <div>
+      <button type="submit" class="btn">Zastosuj</button>
+    </div>
+  </main>
+</body>
+</html>

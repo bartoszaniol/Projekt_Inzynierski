@@ -1,0 +1,32 @@
+main {
+    padding: 0;
+}
+
+.miniszklarnia {
+    position: absolute;
+    height: 80%;
+    width: 90%;
+    z-index: -1;
+}
+
+.tekst {
+    padding: 10px;
+    font-size: 4em;
+}
+
+
+.item{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.intro {
+    margin: 15px;
+    margin-top: 80px;
+}
+
+.funkcje__list{
+    padding: 10px;
+    font-size: 2em;
+    font-weight: 600;
+}

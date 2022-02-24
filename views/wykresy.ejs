@@ -1,0 +1,51 @@
+<%- include('includes/head.ejs') %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/wykresy.css">
+</head>
+<body>
+  <%- include('includes/navigation.ejs') %>
+    <main>
+      <div class="info">
+      <div class="temp">
+        <div class="min_temp">
+          <div class="tytul">Minimalna temperatura</div>
+          <div class="wartosc">19,3°C</div>
+        </div>
+        <div class="srednia_temp">
+          <div class="tytul">Srednia temperatura</div>
+          <div class="wartosc">20°C</div>
+        </div>
+        <div class="max_temp">
+          <div class="tytul">Maksymalna temperatura</div>
+          <div class="wartosc">21,3°C</div>
+        </div>
+      </div>
+      <div class="wilg">
+        <div class="min_wilg">
+          <div class="tytul">Minimalna wilgotność</div>
+          <div class="wartosc">40%</div>
+        </div>
+        <div class="srednia_wilg">
+          <div class="tytul">Srednia wilgotność</div>
+          <div class="wartosc">50%</div>
+        </div>
+        <div class="max_wilg">
+          <div class="tytul">Maksymalna wilgotność</div>
+          <div class="wartosc">60%</div>
+        </div>
+      </div>
+    </div>
+      <div class="wykresy">
+        <div class="wykres">
+          <div class="tytul">Wykres temperatury godzinowy</div>
+          <img src="wykres.png" alt="Wykres">
+        </div>
+        <div class="wykres">
+          <div class="tytul">Wykres wilgotności miesięczny</div>
+          <img src="wykres2.png" alt="Wykres">
+        </div>
+    </div>
+    </main>
+    <%- include('includes/end.ejs') %>

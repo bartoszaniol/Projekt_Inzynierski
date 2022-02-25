@@ -47,5 +47,11 @@
           <img src="wykres2.png" alt="Wykres">
         </div>
     </div>
+    <ul>
+      <% data.temperature.forEach(element => { %>
+        <li><%=element%></li>
+        
+      <% }); %> 
+    </ul>
     </main>
     <%- include('includes/end.ejs') %>

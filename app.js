@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const db = require('./utils/database');
 const mainRoute = require('./routes/main');
 const errorController = require('./controllers/error');
 

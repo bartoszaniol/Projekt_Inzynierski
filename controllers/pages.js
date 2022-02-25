@@ -1,8 +1,16 @@
-exports.getWykresy = (req, res, next) => {
-  res.render("wykresy", {
-    pageTitle: "Wykresy",
-    path: "wykresy",
+const Wykresy = require("../models/wykresy");
+
+exports.getWykresy = async (req, res, next) => {
+  Wykresy.chartData().then((data) => {
+    console.log(data);
+    res.render("wykresy", {
+      pageTitle: "Wykresy",
+      path: "wykresy",
+      data: data
+    });
+    
   });
+  // console.log(data);
 };
 
 exports.getDane = (req, res, next) => {

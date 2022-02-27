@@ -10,22 +10,27 @@
           <div class="info">
             <div class="dane">
                 <div class="dane_nazwa">Temperatura w szklarni</div>
-                <div class="dane_wartosc">20°C</div>
-                <div class="dane_czas">Godzina pomiaru 21.37</div>
+                <div class="dane_wartosc"><%= values.insideTemp %>°C</div>
+                <div class="dane_czas">Czas pomiaru</div>
+                <div class="dane_czas"><%= values.insideDate %></div>
             </div>
             <div class="dane">
                 <div class="dane_nazwa">Wilgotność powietrza w szklarni</div>
-                <div class="dane_wartosc">37%°C</div>
-                <div class="dane_czas">Godzina pomiaru 21.37</div>
+                <div class="dane_wartosc"><%= values.insideHumid %>%</div>
+                <div class="dane_czas">Czas pomiaru</div>
+                <div class="dane_czas"><%= values.insideDate %></div>
             </div>
             <div class="dane">
                 <div class="dane_nazwa">Temperatura gleby</div>
-                <div class="dane_wartosc">20°C</div>
-                <div class="dane_czas">Godzina pomiaru 21.37</div>
+                <div class="dane_wartosc"><%= values.soilTemp %>°C</div>
+                <div class="dane_czas">Czas pomiaru</div>
+                <div class="dane_czas"><%= values.soilDate %></div>
             </div>
             <div class="dane">
-                <div class="dane_nazwa">Nawodnienie gleby</div>
-                <div class="wartosc">👌</div>
+                <div class="dane_nazwa">Wiglotność gleby</div>
+                <div class="wartosc"><% if(parseFloat(values.soilHumid) > 35) {%> 👌 <% } else { %> 🏜️ <% } %></div>
+                <div class="dane_czas">Ostatnie podlanie</div>
+                <div class="dane_czas"><%= values.soilDate %></div>
             </div>
         </div>
         </div>

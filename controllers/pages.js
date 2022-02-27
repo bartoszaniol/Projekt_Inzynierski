@@ -1,22 +1,24 @@
-const Wykresy = require("../models/wykresy");
+const Wykresy = require("../models/dane");
 
-exports.getWykresy = async (req, res, next) => {
-  Wykresy.chartData().then((data) => {
-    console.log(data);
+exports.getWykresy = (req, res, next) => {
+  // Wykresy.chartData().then((data) => {
+  Wykresy.getCharts().then((data) => {
+    // console.log(data);
     res.render("wykresy", {
       pageTitle: "Wykresy",
       path: "wykresy",
-      data: data
+      chartData: data,
     });
-    
   });
-  // console.log(data);
 };
 
 exports.getDane = (req, res, next) => {
-  res.render("dane", {
-    pageTitle: "Dane",
-    path: "dane",
+  Wykresy.getLastData().then((val) => {
+    res.render("dane", {
+      pageTitle: "Dane",
+      path: "dane",
+      values: val
+    });
   });
 };
 

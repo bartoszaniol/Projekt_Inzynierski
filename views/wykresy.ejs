@@ -9,99 +9,310 @@
   <%- include('includes/navigation.ejs') %>
     <main>
       <div class="info">
-      <div class="temp">
-        <div class="min_temp">
-          <div class="tytul">Minimalna temperatura</div>
-          <div class="wartosc"><%=Math.min(...chartData.res.data.datasets[0].data) %>°C</div>
+        <div class="temp">
+          <div class="min_temp">
+            <div class="tytul">Minimalna temperatura</div>
+            <% const minTemp = chartData[0].tempDay[1].minTemp %>
+            <div class="wartosc"><%= minTemp % 1 !==0 ? minTemp.toFixed(2) : minTemp %>°C</div>
+          </div>
+          <div class="srednia_temp">
+            <div class="tytul">Srednia temperatura</div>
+            <% const avgTemp = chartData[0].tempDay[1].avgTemp %>
+            <div class="wartosc"><%= avgTemp % 1 !==0 ? avgTemp.toFixed(2) : avgTemp %>°C</div>
+          </div>
+          <div class="max_temp">
+            <div class="tytul">Maksymalna temperatura</div>
+            <% const maxTemp = chartData[0].tempDay[1].maxTemp%>
+            <div class="wartosc"><%= maxTemp % 1 !==0 ? maxTemp.toFixed(2) : maxTemp %>°C</div>
+          </div>
         </div>
-        <div class="srednia_temp">
-          <div class="tytul">Srednia temperatura</div>
-          <% const sum = chartData.res.data.datasets[0].data.reduce((a, b) => parseFloat(a) + parseFloat(b), 0); %>
-          <div class="wartosc"><%=sum/chartData.res.data.datasets[0].data.length %>°C</div>
-        </div>
-        <div class="max_temp">
-          <div class="tytul">Maksymalna temperatura</div>
-          <div class="wartosc"><%=Math.max(...chartData.res.data.datasets[0].data) %>°C</div>
+        <div class="wilg">
+          <div class="min_wilg">
+            <div class="tytul">Minimalna wilgotność</div>
+            <% const minHumid = chartData[0].humidDay[1].minHumid %>
+            <div class="wartosc"><%= minHumid % 1 !==0 ? minHumid.toFixed(2) : minHumid %>%</div>
+          </div>
+          <div class="srednia_wilg">
+            <% const avgHumid = chartData[0].humidDay[1].avgHumid %>
+            <div class="tytul">Srednia wilgotność</div>
+            <div class="wartosc"><%= avgHumid % 1 !==0 ? avgHumid.toFixed(2) : avgHumid %>%</div>
+          </div>
+          <div class="max_wilg">
+            <div class="tytul">Maksymalna wilgotność</div>
+            <% const maxHumid = chartData[0].humidDay[1].maxHumid %>
+            <div class="wartosc"><%= maxHumid % 1 !==0 ? maxHumid.toFixed(2) : maxHumid %>%</div>
+          </div>
         </div>
       </div>
-      <div class="wilg">
-        <div class="min_wilg">
-          <div class="tytul">Minimalna wilgotność</div>
-          <div class="wartosc"><%=Math.min(...chartData.res2.data.datasets[0].data)%>%</div>
-        </div>
-        <div class="srednia_wilg">
-          <% const sum2 = chartData.res2.data.datasets[0].data.reduce((a, b) => parseFloat(a) + parseFloat(b), 0); %>
-          <div class="tytul">Srednia wilgotność</div>
-          <div class="wartosc"><%=sum2/chartData.res.data.datasets[0].data.length %>%</div>
-        </div>
-        <div class="max_wilg">
-          <div class="tytul">Maksymalna wilgotność</div>
-          <div class="wartosc"><%=Math.max(...chartData.res2.data.datasets[0].data) %>%</div>
-        </div>
+      <div>
+        <button id="toggle">Dzien</button>
+        <button id="toggle2">Tydzien</button>
+        <button id="toggle3">2 Tygodnie</button>
+        <button id="toggle4">Miesiac</button>
       </div>
-    </div>
       <div class="wykresy">
-        <div class="test">
-          <canvas id="myChart1"></canvas>
+        <div class="wykres">
+          <div class="test">
+            <canvas id="tempDay"></canvas>
+          </div>
+          <div class="test hidden" >
+            <canvas id="tempWeek"></canvas>
+          </div>
+          <div class="test hidden" >
+            <canvas id="tempFortnight"></canvas>
+          </div>
+          <div class="test hidden" >
+            <canvas id="tempMonth"></canvas>
+          </div>
         </div>
         <div class="wykres">
           <div class="test">
-            <canvas id="myChart2"></canvas>
+            <canvas id="humidDay"></canvas>
           </div>
-    </div>
-    <script>
-      const chartOptions1= {
-        hitRadius: 20,
-        radius: 5,
-        responsive: true,
-        scales: {
-          yAxes: {
-            ticks: {
-              beginAtZero: true,
-              callback: function (value) {
-                return `${value} °C`;
-              }
-            }
-          }
-        }
-      };
+          <div class="test hidden" >
+            <canvas id="humidWeek"></canvas>
+          </div>
+          <div class="test hidden" >
+            <canvas id="humidFortnight"></canvas>
+          </div>
+          <div class="test hidden" >
+            <canvas id="humidMonth"></canvas>
+          </div>
+        </div>
+      </div>
+    <script> 
 
-      const chartOptions2= {
-        hitRadius: 20,
-        radius: 5,
-        responsive: true,
-        scales: {
-          yAxes: {
-            ticks: {
-              beginAtZero: true,
-              callback: function (value) {
-                return `${value} %`;
-              }
-            }
-          }
-        }
-      };
+    let index = 0;
+    const etempDay = document.getElementById('tempDay')
+    const etempWeek = document.getElementById('tempWeek')
+    const etempFortnight = document.getElementById('tempFortnight')
+    const etempMonth = document.getElementById('tempMonth')
+    const ehumidDay = document.getElementById('humidDay')
+    const ehumidWeek = document.getElementById('humidWeek')
+    const ehumidFortnight = document.getElementById('humidFortnight')
+    const ehumidMonth = document.getElementById('humidMonth')
+
+    const btnDay = document.getElementById('toggle').addEventListener('click', () => {
+      switch(index){
+        case 0:
+          break;
+        case 1:
+          etempWeek.parentElement.classList.toggle("hidden")
+          ehumidWeek.parentElement.classList.toggle("hidden")
+          
+          etempDay.parentElement.classList.toggle("hidden")
+          ehumidDay.parentElement.classList.toggle("hidden")
+          index = 0;
+          break;
+        case 2:
+          etempFortnight.parentElement.classList.toggle("hidden")
+          ehumidFortnight.parentElement.classList.toggle("hidden")
+
+          etempDay.parentElement.classList.toggle("hidden")
+          ehumidDay.parentElement.classList.toggle("hidden")
+          index = 0;
+          break;
+        case 3:
+          etempMonth.parentElement.classList.toggle("hidden")
+          ehumidMonth.parentElement.classList.toggle("hidden")
+
+          etempDay.parentElement.classList.toggle("hidden")
+          ehumidDay.parentElement.classList.toggle("hidden")
+          index = 0;
+          break;
+      }
       
+    })
 
-      const options1 = <%- JSON.stringify(chartData.res) %>;
-      const options2 = <%- JSON.stringify(chartData.res2) %>;
-      console.log(options1, options2)
-      const ctx1 = document.getElementById('myChart1').getContext('2d');
-      const ctx2 = document.getElementById('myChart2').getContext('2d');
-      let gradient = ctx1.createLinearGradient(0,0,0,400);
+    const btnWeek = document.getElementById('toggle2').addEventListener('click', () => {
+      switch(index){
+        case 0:
+          etempDay.parentElement.classList.toggle("hidden")
+          ehumidDay.parentElement.classList.toggle("hidden")
+
+          etempWeek.parentElement.classList.toggle("hidden")
+          ehumidWeek.parentElement.classList.toggle("hidden")
+          index = 1;
+          break;
+        case 1:
+          break;
+        case 2:
+          etempFortnight.parentElement.classList.toggle("hidden")
+          ehumidFortnight.parentElement.classList.toggle("hidden")
+
+          etempWeek.parentElement.classList.toggle("hidden")
+          ehumidWeek.parentElement.classList.toggle("hidden")
+          index = 1;
+          break;
+        case 3:
+          etempMonth.parentElement.classList.toggle("hidden")
+          ehumidMonth.parentElement.classList.toggle("hidden")
+
+          etempWeek.parentElement.classList.toggle("hidden")
+          ehumidWeek.parentElement.classList.toggle("hidden")
+          index = 1;
+          break;
+      }
+      
+    })
+
+
+    const btnFortnight = document.getElementById('toggle3').addEventListener('click', () => {
+      switch(index){
+        case 0:
+          etempDay.parentElement.classList.toggle("hidden")
+          ehumidDay.parentElement.classList.toggle("hidden")
+
+          etempFortnight.parentElement.classList.toggle("hidden")
+          ehumidFortnight.parentElement.classList.toggle("hidden")
+          index = 2;
+          break;
+        case 1:
+          etempWeek.parentElement.classList.toggle("hidden")
+          ehumidWeek.parentElement.classList.toggle("hidden")
+
+          etempFortnight.parentElement.classList.toggle("hidden")
+          ehumidFortnight.parentElement.classList.toggle("hidden")
+          index = 2;
+        case 2:
+          break;
+        case 3:
+          etempMonth.parentElement.classList.toggle("hidden")
+          ehumidMonth.parentElement.classList.toggle("hidden")
+
+          etempFortnight.parentElement.classList.toggle("hidden")
+          ehumidFortnight.parentElement.classList.toggle("hidden")
+          index = 2;
+          break;
+      }
+      
+    })
+
+
+    const btnMonth = document.getElementById('toggle4').addEventListener('click', () => {
+      switch(index){
+        case 0:
+          etempDay.parentElement.classList.toggle("hidden")
+          ehumidDay.parentElement.classList.toggle("hidden")
+
+          etempMonth.parentElement.classList.toggle("hidden")
+          ehumidMonth.parentElement.classList.toggle("hidden")
+          index = 3;
+          break;
+        case 1:
+          etempWeek.parentElement.classList.toggle("hidden")
+          ehumidWeek.parentElement.classList.toggle("hidden")
+
+          etempMonth.parentElement.classList.toggle("hidden")
+          ehumidMonth.parentElement.classList.toggle("hidden")
+          index = 3;
+        case 2:
+          etempFortnight.parentElement.classList.toggle("hidden")
+          ehumidFortnight.parentElement.classList.toggle("hidden")
+
+          etempMonth.parentElement.classList.toggle("hidden")
+          ehumidMonth.parentElement.classList.toggle("hidden")
+          index = 3;
+        case 3:
+          break;
+      }
+      
+    })
+
+
+
+      const optionsTempDay = <%- JSON.stringify(chartData[0].tempDay[0]) %>;
+      const optionsTempWeek = <%- JSON.stringify(chartData[1].tempWeek[0]) %>;
+      const optionsTempFortnight = <%- JSON.stringify(chartData[2].tempFortnight[0]) %>;
+      const optionsTempMonth = <%- JSON.stringify(chartData[3].tempMonth[0]) %>;
+
+      const optionsHumidDay = <%- JSON.stringify(chartData[0].humidDay[0]) %>;
+      const optionsHumidWeek = <%- JSON.stringify(chartData[1].humidWeek[0]) %>;
+      const optionsHumidFortnight = <%- JSON.stringify(chartData[2].humidFortnight[0]) %>;
+      const optionsHumidMonth = <%- JSON.stringify(chartData[3].humidMonth[0]) %>;
+
+
+      const chartOptions = (options, type) => {
+        let symbol;
+        if(type ==='T'){
+          symbol = '°C';
+        } else {
+          symbol = '%'
+        }
+        return {
+        hitRadius: 20,
+        radius: 5,
+        responsive: true,
+        scales: {
+          y: {
+            suggestedMin: Math.min(...options.data.datasets[0].data) - .5,
+            suggestedMax: Math.max(...options.data.datasets[0].data) + .5,
+            ticks: {
+              beginAtZero: true,
+              callback: function (value) {
+                return `${value} ${symbol}`;
+              }
+            }
+          }
+        }}
+      }
+
+      const ctxTempDay = document.getElementById('tempDay').getContext('2d');
+      const ctxTempWeek = document.getElementById('tempWeek').getContext('2d');
+      const ctxTempFortnight = document.getElementById('tempFortnight').getContext('2d');
+      const ctxTempMonth = document.getElementById('tempMonth').getContext('2d');
+
+      const ctxHumidDay = document.getElementById('humidDay').getContext('2d');
+      const ctxHumidWeek = document.getElementById('humidWeek').getContext('2d');
+      const ctxHumidFortnight = document.getElementById('humidFortnight').getContext('2d');
+      const ctxHumidMonth = document.getElementById('humidMonth').getContext('2d');
+
+      let gradient = ctxTempDay.createLinearGradient(0,0,0,400);
       gradient.addColorStop(0,'rgba(58,123,213,1');
       gradient.addColorStop(0,'rgba(0,210,255, 0.3');
 
-      let gradient2 = ctx2.createLinearGradient(0,0,0,400);
-      gradient2.addColorStop(0,'rgba(58,123,213,1');
-      gradient2.addColorStop(0,'rgba(0,210,255, 0.3');
+      optionsTempDay.data.datasets[0].backgroundColor = gradient;
+      optionsHumidDay.data.datasets[0].backgroundColor = gradient;
+      optionsTempWeek.data.datasets[0].backgroundColor = gradient;
+      optionsHumidWeek.data.datasets[0].backgroundColor = gradient;
+      optionsTempFortnight.data.datasets[0].backgroundColor = gradient;
+      optionsHumidFortnight.data.datasets[0].backgroundColor = gradient;
+      optionsTempMonth.data.datasets[0].backgroundColor = gradient;
+      optionsHumidMonth.data.datasets[0].backgroundColor = gradient;
 
-      options1.data.datasets[0].backgroundColor = gradient;
-      options2.data.datasets[0].backgroundColor = gradient2;
-      options1.options = chartOptions1;
-      options2.options = chartOptions2;
-      const tempChart = new Chart(ctx1, options1);
-      const tempChart2 = new Chart(ctx2, options2);
+      const dayTempOptions = chartOptions(optionsTempDay, 'T');
+      const weekTempOptions = chartOptions(optionsTempDay, 'T');
+      const fortnightTempOptions = chartOptions(optionsTempDay, 'T');
+      const monthTempOptions = chartOptions(optionsTempDay, 'T');
+
+      const dayHumidOptions = chartOptions(optionsHumidDay, 'H');
+      const weekHumidOptions = chartOptions(optionsHumidDay, 'H');
+      const fortnightHumidOptions = chartOptions(optionsHumidDay, 'H');
+      const monthHumidOptions = chartOptions(optionsHumidDay, 'H');
+
+
+
+      optionsTempDay.options = dayTempOptions;
+      optionsTempWeek.options = weekTempOptions;
+      optionsTempFortnight.options = fortnightTempOptions;
+      optionsTempMonth.options = monthTempOptions;
+
+      optionsHumidDay.options = dayHumidOptions;
+      optionsHumidWeek.options = weekHumidOptions;
+      optionsHumidFortnight.options = fortnightHumidOptions;
+      optionsHumidMonth.options = monthHumidOptions;
+
+      const tempDayChart = new Chart(ctxTempDay, optionsTempDay);
+      const tempWeekChart = new Chart(ctxTempWeek, optionsTempWeek);
+      const tempFortnightChart = new Chart(ctxTempFortnight, optionsTempFortnight);
+      const tempMonthChart = new Chart(ctxTempMonth, optionsTempMonth);
+
+      const humidDayChart = new Chart(ctxHumidDay, optionsHumidDay);
+      const humidWeekChart = new Chart(ctxHumidWeek, optionsHumidWeek);
+      const humidFortnightChart = new Chart(ctxHumidFortnight, optionsHumidFortnight);
+      const humidMonthChart = new Chart(ctxHumidMonth, optionsHumidMonth);
+
+
     </script>
      
     </main>

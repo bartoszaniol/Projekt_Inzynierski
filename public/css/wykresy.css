@@ -40,3 +40,7 @@
     position: relative;
     width: 80vh;
 }
+
+.hidden {
+    display: none;
+}

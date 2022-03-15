@@ -63,6 +63,7 @@ body {
     font-size: 1em;
     font-weight: bold;
     border: none;
+    cursor: pointer;
   }
 
   .logout:hover, .logout:active {

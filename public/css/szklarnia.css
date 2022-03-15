@@ -1,32 +1,64 @@
 main {
-    padding: 0;
+  padding: 0;
 }
 
 .miniszklarnia {
-    position: absolute;
-    height: 80%;
-    width: 90%;
-    z-index: -1;
+  position: absolute;
+  height: 80%;
+  width: 90%;
+  z-index: -1;
 }
 
 .tekst {
-    padding: 10px;
-    font-size: 4em;
+  padding: 10px;
+  font-size: 4em;
 }
 
-
-.item{
-    font-weight: bold;
-    margin-bottom: 10px;
+.item {
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .intro {
-    margin: 15px;
-    margin-top: 80px;
+  margin: 15px;
+  margin-top: 80px;
 }
 
-.funkcje__list{
-    padding: 10px;
-    font-size: 2em;
-    font-weight: 600;
+.funkcje__list {
+  padding: 10px;
+  font-size: 2em;
+  font-weight: 600;
+}
+.logowanie {
+  display: inline-block;
+  margin: 20px;
+  margin-top: 20px;
+  border: 5em;
+  cursor: pointer;
+  outline: none;
+  font-size: 16px;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  padding: 0.7em 2em;
+  border-radius: 65px;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+  -webkit-transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+  color: white;
+}
+.logowanie:link {
+  text-decoration: none;
+}
+
+.logowanie:visited {
+  text-decoration: none;
+}
+
+.logowanie:hover {
+  text-decoration: none;
+}
+
+.logowanie:active {
+  text-decoration: none;
 }

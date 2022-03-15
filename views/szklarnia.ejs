@@ -26,5 +26,8 @@
           <li class="item">Steruj światłem w szklarni</li>
         </ul>
       </div>
+      <% if(!isLoggedIn){ %>
+        <a href="/login" class="logowanie">Zaloguj sie</a>
+      <% }%>
     </main>
     <%- include('includes/end.ejs') %>

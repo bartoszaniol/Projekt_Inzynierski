@@ -16,16 +16,17 @@ c = conn.cursor()
 #     humid_value text,
 #     data text
 # )""")
-czas = time.time() * 1000
-c.execute("INSERT INTO inside VALUES (?, ?, ?)", ('24', '65', czas))
-c.execute("INSERT INTO soil VALUES (?, ?, ?)", ('24', '52', czas))
-conn.commit()
+# czas = time.time() * 1000
+# c.execute("INSERT INTO inside VALUES (?, ?, ?)", ('24', '65', czas))
+# c.execute("INSERT INTO soil VALUES (?, ?, ?)", ('24', '52', czas))
+# conn.commit()
 
 # c.execute("SELECT strftime('%H:%M:%S %Y/%m/%d')")
 # c.execute("SELECT datetime()")
 # print(c.fetchone())
 
 # c.execute("SELECT rowid, * FROM inside")
+# c.execute("SELECT * FROM users WHERE username = Bartek")
 # print(c.fetchall())
 
 conn.close()

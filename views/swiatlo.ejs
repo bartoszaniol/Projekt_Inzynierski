@@ -10,10 +10,12 @@
   <body>
     <%- include('includes/navigation.ejs') %>
     <main>
+      <form action="/swiatlo" method="post">
       <label for="colorpicker">Wybierz kolor oświetlenia w szklarni:</label>
-      <input type="color" id="colorpicker" value="#1698E9" />
+      <input type="color" id="colorpicker" value="#1698E9" name="colorpicker"/>
       <div>
         <button type="submit" class="btn">Zastosuj</button>
       </div>
+    </form>
     </main>
     <%- include('includes/end.ejs') %>

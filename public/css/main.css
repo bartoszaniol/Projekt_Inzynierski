@@ -21,6 +21,7 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 
   .main-header__item_list {
@@ -31,10 +32,7 @@ body {
     font-family: 'Arsenal', sans-serif;
   }
 
-  .main-header__item_list img {
-    height: 40px;
-  }
-
+  
   .main-header__item {
     margin: 0;
     padding: 0;
@@ -42,14 +40,32 @@ body {
     font-size: 1.2em;
     font-weight: bold;
   }
-
+  
   .main-header__item a {
     text-decoration: none;
     color: black;
   }
-
+  
   .main-header__item a:hover,
   .main-header__item a:active,
   .main-header__item a.active {
+    color: white;
+  }
+
+  .login {
+    margin-right: 30px;
+  }
+
+  .logout {
+    padding: 0;
+    background-color: #dd1b1b;
+    color: black;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+  }
+
+  .logout:hover, .logout:active {
+    background-color: #dd1b1b;
     color: white;
   }

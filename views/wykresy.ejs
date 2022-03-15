@@ -10,45 +10,258 @@
     <main>
       <div class="info">
         <div class="temp">
-          <div class="min_temp">
+
+          <div class="min_temp" id="minDayTemp">
             <div class="tytul">Minimalna temperatura</div>
-            <% const minTemp = chartData[0].tempDay[1].minTemp %>
-            <div class="wartosc"><%= minTemp % 1 !==0 ? minTemp.toFixed(2) : minTemp %>°C</div>
+            <% const minDayTemp = chartData[0].tempDay[1].minTemp %>
+            <% if(minDayTemp !== Infinity) { %>
+            <div class="wartosc"><%= minDayTemp % 1 !==0 ? minDatTemp.toFixed(2) : minDayTemp %>°C</div>
+              <% } else { %>
+                <div class="wartosc">Brak danych</div>
+                <% }%>
           </div>
-          <div class="srednia_temp">
+
+          <div class="min_temp hidden" id="minWeekTemp">
+            <div class="tytul">Minimalna temperatura</div>
+            <% const minWeekTemp = chartData[1].tempWeek[1].minTemp %>
+            <% if(minWeekTemp !== Infinity) { %>
+            <div class="wartosc"><%= minWeekTemp % 1 !==0 ? minWeekTemp.toFixed(2) : minWeekTemp %>°C</div>
+              <% } else { %>
+                <div class="wartosc">Brak danych</div>
+                <% }%>
+          </div>
+
+          <div class="min_temp hidden" id="minFortnightTemp">
+            <div class="tytul">Minimalna temperatura</div>
+            <% const minFortnightTemp = chartData[2].tempFortnight[1].minTemp %>
+            <% if(minFortnightTemp !== Infinity) { %>
+            <div class="wartosc"><%= minFortnightTemp % 1 !==0 ? minFortnightTemp.toFixed(2) : minFortnightTemp %>°C</div>
+              <% } else { %>
+                <div class="wartosc">Brak danych</div>
+                <% }%>
+          </div>
+
+          <div class="min_temp hidden" id="minMonthTemp">
+            <div class="tytul">Minimalna temperatura</div>
+            <% const minMonthTemp = chartData[3].tempMonth[1].minTemp %>
+            <% if(minMonthTemp !== Infinity) { %>
+            <div class="wartosc"><%= minMonthTemp % 1 !==0 ? minMonthTemp.toFixed(2) : minMonthTemp %>°C</div>
+              <% } else { %>
+                <div class="wartosc">Brak danych</div>
+                <% }%>
+          </div>
+
+          <div class="srednia_temp" id="avgDayTemp">
             <div class="tytul">Srednia temperatura</div>
-            <% const avgTemp = chartData[0].tempDay[1].avgTemp %>
-            <div class="wartosc"><%= avgTemp % 1 !==0 ? avgTemp.toFixed(2) : avgTemp %>°C</div>
+            <% const avgDayTemp = chartData[0].tempDay[1].avgTemp %>
+            <% if(!isNaN(avgDayTemp)) { %>
+              <div class="wartosc"><%= avgDayTemp % 1 !==0 ? avgDayTemp.toFixed(2) : avgDayTemp %>°C</div>
+              <% } else { %>
+                <div class="wartosc">Brak danych</div>
+              <% }%>
           </div>
-          <div class="max_temp">
+
+          <div class="srednia_temp hidden" id="avgWeekTemp">
+            <div class="tytul">Srednia temperatura</div>
+            <% const avgWeekTemp = chartData[1].tempWeek[1].avgTemp %>
+            <% if(!isNaN(avgWeekTemp)) { %>
+              <div class="wartosc"><%= avgWeekTemp % 1 !==0 ? avgWeekTemp.toFixed(2) : avgWeekTemp %>°C</div>
+              <% } else { %>
+                <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="srednia_temp hidden" id="avgFortnightTemp">
+            <div class="tytul">Srednia temperatura</div>
+            <% const avgFortnightTemp = chartData[2].tempFortnight[1].avgTemp %>
+            <% if(!isNaN(avgFortnightTemp)) { %>
+              <div class="wartosc"><%= avgFortnightTemp % 1 !==0 ? avgFortnightTemp.toFixed(2) : avgFortnightTemp %>°C</div>
+              <% } else { %>
+                <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="srednia_temp hidden" id="avgMonthTemp">
+            <div class="tytul">Srednia temperatura</div>
+            <% const avgMonthTemp = chartData[3].tempMonth[1].avgTemp %>
+            <% if(!isNaN(avgMonthTemp)) { %>
+              <div class="wartosc"><%= avgMonthTemp % 1 !==0 ? avgMonthTemp.toFixed(2) : avgMonthTemp %>°C</div>
+              <% } else { %>
+                <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="max_temp" id="maxDayTemp">
             <div class="tytul">Maksymalna temperatura</div>
-            <% const maxTemp = chartData[0].tempDay[1].maxTemp%>
-            <div class="wartosc"><%= maxTemp % 1 !==0 ? maxTemp.toFixed(2) : maxTemp %>°C</div>
+            <% const maxDayTemp = chartData[0].tempDay[1].maxTemp%>
+            <% if(maxDayTemp !== -Infinity) { %>
+              <div class="wartosc"><%= maxDayTemp % 1 !==0 ? maxDayTemp.toFixed(2) : maxDayTemp %>°C</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
           </div>
+
+          <div class="max_temp hidden" id="maxWeekTemp">
+            <div class="tytul">Maksymalna temperatura</div>
+            <% const maxWeekTemp = chartData[1].tempWeek[1].maxTemp%>
+            <% if(maxWeekTemp !== -Infinity) { %>
+              <div class="wartosc"><%= maxWeekTemp % 1 !==0 ? maxWeekTemp.toFixed(2) : maxWeekTemp %>°C</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="max_temp hidden" id="maxFortnightTemp">
+            <div class="tytul">Maksymalna temperatura</div>
+            <% const maxFortnightTemp = chartData[2].tempFortnight[1].maxTemp%>
+            <% if(maxFortnightTemp !== -Infinity) { %>
+              <div class="wartosc"><%= maxFortnightTemp % 1 !==0 ? maxFortnightTemp.toFixed(2) : maxFortnightTemp %>°C</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="max_temp hidden" id="maxMonthTemp">
+            <div class="tytul">Maksymalna temperatura</div>
+            <% const maxMonthTemp = chartData[3].tempMonth[1].maxTemp%>
+            <% if(maxMonthTemp !== -Infinity) { %>
+              <div class="wartosc"><%= maxMonthTemp % 1 !==0 ? maxMonthTemp.toFixed(2) : maxMonthTemp %>°C</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
         </div>
+
         <div class="wilg">
-          <div class="min_wilg">
+
+          <div class="min_wilg" id="minDayHumid">
             <div class="tytul">Minimalna wilgotność</div>
-            <% const minHumid = chartData[0].humidDay[1].minHumid %>
-            <div class="wartosc"><%= minHumid % 1 !==0 ? minHumid.toFixed(2) : minHumid %>%</div>
+            <% const minDayHumid = chartData[0].humidDay[1].minHumid %>
+            <% if(minDayHumid !== Infinity) { %>
+            <div class="wartosc"><%= minDayHumid % 1 !==0 ? minDayHumid.toFixed(2) : minDayHumid %>%</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
           </div>
-          <div class="srednia_wilg">
-            <% const avgHumid = chartData[0].humidDay[1].avgHumid %>
+
+          <div class="min_wilg hidden" id="minWeekHumid">
+            <div class="tytul">Minimalna wilgotność</div>
+            <% const minWeekHumid = chartData[1].humidWeek[1].minHumid %>
+            <% if(minWeekHumid !== Infinity) { %>
+            <div class="wartosc"><%= minWeekHumid % 1 !==0 ? minWeekHumid.toFixed(2) : minWeekHumid %>%</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="min_wilg hidden" id="minFortnightHumid">
+            <div class="tytul">Minimalna wilgotność</div>
+            <% const minFortnightHumid = chartData[2].humidFortnight[1].minHumid %>
+            <% if(minFortnightHumid !== Infinity) { %>
+            <div class="wartosc"><%= minFortnightHumid % 1 !==0 ? minFortnightHumid.toFixed(2) : minFortnightHumid %>%</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="min_wilg hidden" id="minMonthHumid">
+            <div class="tytul">Minimalna wilgotność</div>
+            <% const minMonthHumid = chartData[3].humidMonth[1].minHumid %>
+            <% if(minMonthHumid !== Infinity) { %>
+            <div class="wartosc"><%= minMonthHumid % 1 !==0 ? minMonthHumid.toFixed(2) : minMonthHumid %>%</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="srednia_wilg" id="avgDayHumid">
+            <% const avgDayHumid = chartData[0].humidDay[1].avgHumid %>
             <div class="tytul">Srednia wilgotność</div>
-            <div class="wartosc"><%= avgHumid % 1 !==0 ? avgHumid.toFixed(2) : avgHumid %>%</div>
+            <% if(!isNaN(avgDayHumid)) { %>
+            <div class="wartosc"><%= avgDayHumid % 1 !==0 ? avgDayHumid.toFixed(2) : avgDayHumid %>%</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
           </div>
-          <div class="max_wilg">
+
+          <div class="srednia_wilg hidden" id="avgWeekHumid">
+            <% const avgWeekHumid = chartData[1].humidWeek[1].avgHumid %>
+            <div class="tytul">Srednia wilgotność</div>
+            <% if(!isNaN(avgWeekHumid)) { %>
+            <div class="wartosc"><%= avgWeekHumid % 1 !==0 ? avgWeekHumid.toFixed(2) : avgWeekHumid %>%</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="srednia_wilg hidden" id="avgFortnightHumid">
+            <% const avgFortnightHumid = chartData[2].humidFortnight[1].avgHumid %>
+            <div class="tytul">Srednia wilgotność</div>
+            <% if(!isNaN(avgFortnightHumid)) { %>
+            <div class="wartosc"><%= avgFortnightHumid % 1 !==0 ? avgFortnightHumid.toFixed(2) : avgFortnightHumid %>%</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="srednia_wilg hidden" id="avgMonthHumid">
+            <% const avgMonthHumid = chartData[3].humidMonth[1].avgHumid %>
+            <div class="tytul">Srednia wilgotność</div>
+            <% if(!isNaN(avgMonthHumid)) { %>
+            <div class="wartosc"><%= avgMonthHumid % 1 !==0 ? avgMonthHumid.toFixed(2) : avgMonthHumid %>%</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="max_wilg" id="maxDayHumid">
             <div class="tytul">Maksymalna wilgotność</div>
-            <% const maxHumid = chartData[0].humidDay[1].maxHumid %>
-            <div class="wartosc"><%= maxHumid % 1 !==0 ? maxHumid.toFixed(2) : maxHumid %>%</div>
+            <% const maxDayHumid = chartData[0].humidDay[1].maxHumid %>
+            <% if(maxDayHumid !== -Infinity) { %>
+            <div class="wartosc"><%= maxDayHumid % 1 !==0 ? maxDayHumid.toFixed(2) : maxDayHumid %>%</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
           </div>
+
+          <div class="max_wilg hidden" id="maxWeekHumid">
+            <div class="tytul">Maksymalna wilgotność</div>
+            <% const maxWeekHumid = chartData[1].humidWeek[1].maxHumid %>
+            <% if(maxWeekHumid !== -Infinity) { %>
+            <div class="wartosc"><%= maxWeekHumid % 1 !==0 ? maxWeekHumid.toFixed(2) : maxWeekHumid %>%</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="max_wilg hidden" id="maxFortnightHumid">
+            <div class="tytul">Maksymalna wilgotność</div>
+            <% const maxFortnightHumid = chartData[2].humidFortnight[1].maxHumid %>
+            <% if(maxFortnightHumid !== -Infinity) { %>
+            <div class="wartosc"><%= maxFortnightHumid % 1 !==0 ? maxFortnightHumid.toFixed(2) : maxFortnightHumid %>%</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
+          <div class="max_wilg hidden" id="maxMonthHumid">
+            <div class="tytul">Maksymalna wilgotność</div>
+            <% const maxMonthHumid = chartData[3].humidMonth[1].maxHumid %>
+            <% if(maxMonthHumid !== -Infinity) { %>
+            <div class="wartosc"><%= maxMonthHumid % 1 !==0 ? maxMonthHumid.toFixed(2) : maxMonthHumid %>%</div>
+            <% } else { %>
+              <div class="wartosc">Brak danych</div>
+              <% }%>
+          </div>
+
         </div>
       </div>
-      <div>
-        <button id="toggle">Dzien</button>
-        <button id="toggle2">Tydzien</button>
-        <button id="toggle3">2 Tygodnie</button>
-        <button id="toggle4">Miesiac</button>
+      <div class="buttons">
+        <button class='bn30' id="toggle">Dzien</button>
+        <button class='bn30' id="toggle2">Tydzien</button>
+        <button class='bn30' id="toggle3">2 Tygodnie</button>
+        <button class='bn30' id="toggle4">Miesiac</button>
       </div>
       <div class="wykresy">
         <div class="wykres">
@@ -92,66 +305,116 @@
     const ehumidFortnight = document.getElementById('humidFortnight')
     const ehumidMonth = document.getElementById('humidMonth')
 
+    const infoTempMinDay = document.getElementById('minDayTemp')
+    const infoTempMinWeek = document.getElementById('minWeekTemp')
+    const infoTempMinFortnight= document.getElementById('minFortnightTemp')
+    const infoTempMinMonth = document.getElementById('minMonthTemp')
+
+    const infoHumidMinDay = document.getElementById('minDayHumid')
+    const infoHumidMinWeek = document.getElementById('minWeekHumid')
+    const infoHumidMinFortnight= document.getElementById('minFortnightHumid')
+    const infoHumidMinMonth = document.getElementById('minMonthHumid')
+
+    const infoTempAvgDay = document.getElementById('avgDayTemp')
+    const infoTempAvgWeek = document.getElementById('avgWeekTemp')
+    const infoTempAvgFortnight= document.getElementById('avgFortnightTemp')
+    const infoTempAvgMonth = document.getElementById('avgMonthTemp')
+
+    const infoHumidAvgDay = document.getElementById('avgDayHumid')
+    const infoHumidAvgWeek = document.getElementById('avgWeekHumid')
+    const infoHumidAvgFortnight= document.getElementById('avgFortnightHumid')
+    const infoHumidAvgMonth = document.getElementById('avgMonthHumid')
+
+    const infoTempMaxDay = document.getElementById('maxDayTemp')
+    const infoTempMaxWeek = document.getElementById('maxWeekTemp')
+    const infoTempMaxFortnight= document.getElementById('maxFortnightTemp')
+    const infoTempMaxMonth = document.getElementById('maxMonthTemp')
+
+    const infoHumidMaxDay = document.getElementById('maxDayHumid')
+    const infoHumidMaxWeek = document.getElementById('maxWeekHumid')
+    const infoHumidMaxFortnight= document.getElementById('maxFortnightHumid')
+    const infoHumidMaxMonth = document.getElementById('maxMonthHumid')
+
+    const toggleDay = () => {
+      etempDay.parentElement.classList.toggle("hidden")
+      ehumidDay.parentElement.classList.toggle("hidden")
+      infoTempAvgDay.classList.toggle("hidden")
+      infoTempMinDay.classList.toggle("hidden")
+      infoTempMaxDay.classList.toggle("hidden")
+      infoHumidAvgDay.classList.toggle("hidden")
+      infoHumidMinDay.classList.toggle("hidden")
+      infoHumidMaxDay.classList.toggle("hidden")
+    }
+
+    const toggleWeek = () => {
+      etempWeek.parentElement.classList.toggle("hidden")
+      ehumidWeek.parentElement.classList.toggle("hidden")
+      infoTempAvgWeek.classList.toggle("hidden")
+      infoTempMinWeek.classList.toggle("hidden")
+      infoTempMaxWeek.classList.toggle("hidden")
+      infoHumidAvgWeek.classList.toggle("hidden")
+      infoHumidMinWeek.classList.toggle("hidden")
+      infoHumidMaxWeek.classList.toggle("hidden")
+    }
+
+    const toggleFortnight = () => {
+      etempFortnight.parentElement.classList.toggle("hidden")
+      ehumidFortnight.parentElement.classList.toggle("hidden")
+      infoTempAvgFortnight.classList.toggle("hidden")
+      infoTempMinFortnight.classList.toggle("hidden")
+      infoTempMaxFortnight.classList.toggle("hidden")
+      infoHumidAvgFortnight.classList.toggle("hidden")
+      infoHumidMinFortnight.classList.toggle("hidden")
+      infoHumidMaxFortnight.classList.toggle("hidden")
+    }
+
+    const toggleMonth = () => {
+      etempMonth.parentElement.classList.toggle("hidden")
+      ehumidMonth.parentElement.classList.toggle("hidden")
+      infoTempAvgMonth.classList.toggle("hidden")
+      infoTempMinMonth.classList.toggle("hidden")
+      infoTempMaxMonth.classList.toggle("hidden")
+      infoHumidAvgMonth.classList.toggle("hidden")
+      infoHumidMinMonth.classList.toggle("hidden")
+      infoHumidMaxMonth.classList.toggle("hidden")
+    }
     const btnDay = document.getElementById('toggle').addEventListener('click', () => {
       switch(index){
         case 0:
           break;
         case 1:
-          etempWeek.parentElement.classList.toggle("hidden")
-          ehumidWeek.parentElement.classList.toggle("hidden")
-          
-          etempDay.parentElement.classList.toggle("hidden")
-          ehumidDay.parentElement.classList.toggle("hidden")
-          index = 0;
+          toggleWeek();
           break;
         case 2:
-          etempFortnight.parentElement.classList.toggle("hidden")
-          ehumidFortnight.parentElement.classList.toggle("hidden")
-
-          etempDay.parentElement.classList.toggle("hidden")
-          ehumidDay.parentElement.classList.toggle("hidden")
-          index = 0;
+          toggleFortnight();
           break;
         case 3:
-          etempMonth.parentElement.classList.toggle("hidden")
-          ehumidMonth.parentElement.classList.toggle("hidden")
-
-          etempDay.parentElement.classList.toggle("hidden")
-          ehumidDay.parentElement.classList.toggle("hidden")
-          index = 0;
+          toggleMonth();
           break;
       }
-      
+      if(index !== 0) {
+        toggleDay();
+        index = 0;
+      }
     })
 
     const btnWeek = document.getElementById('toggle2').addEventListener('click', () => {
       switch(index){
         case 0:
-          etempDay.parentElement.classList.toggle("hidden")
-          ehumidDay.parentElement.classList.toggle("hidden")
-
-          etempWeek.parentElement.classList.toggle("hidden")
-          ehumidWeek.parentElement.classList.toggle("hidden")
-          index = 1;
+          toggleDay();
           break;
         case 1:
           break;
         case 2:
-          etempFortnight.parentElement.classList.toggle("hidden")
-          ehumidFortnight.parentElement.classList.toggle("hidden")
-
-          etempWeek.parentElement.classList.toggle("hidden")
-          ehumidWeek.parentElement.classList.toggle("hidden")
-          index = 1;
+          toggleFortnight();
           break;
         case 3:
-          etempMonth.parentElement.classList.toggle("hidden")
-          ehumidMonth.parentElement.classList.toggle("hidden")
-
-          etempWeek.parentElement.classList.toggle("hidden")
-          ehumidWeek.parentElement.classList.toggle("hidden")
-          index = 1;
+          toggleMonth();
           break;
+      }
+      if(index !== 1){
+        toggleWeek();
+        index = 1
       }
       
     })
@@ -160,63 +423,41 @@
     const btnFortnight = document.getElementById('toggle3').addEventListener('click', () => {
       switch(index){
         case 0:
-          etempDay.parentElement.classList.toggle("hidden")
-          ehumidDay.parentElement.classList.toggle("hidden")
-
-          etempFortnight.parentElement.classList.toggle("hidden")
-          ehumidFortnight.parentElement.classList.toggle("hidden")
-          index = 2;
+          toggleDay();
           break;
         case 1:
-          etempWeek.parentElement.classList.toggle("hidden")
-          ehumidWeek.parentElement.classList.toggle("hidden")
-
-          etempFortnight.parentElement.classList.toggle("hidden")
-          ehumidFortnight.parentElement.classList.toggle("hidden")
-          index = 2;
+          toggleWeek();
+          break;
         case 2:
           break;
         case 3:
-          etempMonth.parentElement.classList.toggle("hidden")
-          ehumidMonth.parentElement.classList.toggle("hidden")
-
-          etempFortnight.parentElement.classList.toggle("hidden")
-          ehumidFortnight.parentElement.classList.toggle("hidden")
-          index = 2;
+          toggleMonth();
           break;
       }
-      
+      if(index !== 2) {
+        toggleFortnight();
+        index = 2;
+      }
     })
 
 
     const btnMonth = document.getElementById('toggle4').addEventListener('click', () => {
       switch(index){
         case 0:
-          etempDay.parentElement.classList.toggle("hidden")
-          ehumidDay.parentElement.classList.toggle("hidden")
-
-          etempMonth.parentElement.classList.toggle("hidden")
-          ehumidMonth.parentElement.classList.toggle("hidden")
-          index = 3;
+          toggleDay();
           break;
         case 1:
-          etempWeek.parentElement.classList.toggle("hidden")
-          ehumidWeek.parentElement.classList.toggle("hidden")
-
-          etempMonth.parentElement.classList.toggle("hidden")
-          ehumidMonth.parentElement.classList.toggle("hidden")
-          index = 3;
+          toggleWeek();
+          break;
         case 2:
-          etempFortnight.parentElement.classList.toggle("hidden")
-          ehumidFortnight.parentElement.classList.toggle("hidden")
-
-          etempMonth.parentElement.classList.toggle("hidden")
-          ehumidMonth.parentElement.classList.toggle("hidden")
-          index = 3;
+          toggleFortnight();
         case 3:
           break;
       }
-      
+      if(index !== 3) {
+        toggleMonth();
+        index = 3;
+      }
     })
 
 

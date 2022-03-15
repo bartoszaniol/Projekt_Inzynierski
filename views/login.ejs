@@ -1,0 +1,22 @@
+<%- include('includes/head.ejs') %>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arsenal&display=swap" rel="stylesheet">
+</head>
+<body>
+<%- include('includes/navigation.ejs') %>
+<main>
+    <h1>Logowanie</h1>
+    <div>
+        <form action="/login" method="POST">
+            <label for="name">Nazwa</label>
+            <input type="text" name="name" id="name">
+            <label for="password">Haslo</label>
+            <input type="password" name="password" id="password">
+            <div>
+                <button type="submit">Zaloguj</button>
+            </div>
+        </form>
+    </div>
+</main>
+<%- include('includes/end.ejs') %>

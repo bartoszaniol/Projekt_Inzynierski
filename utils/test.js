@@ -14,9 +14,6 @@ const addToDb = async () => {
             FROM inside
             WHERE temp_value > ?`;
 
-
-    const sqlite3 = require('sqlite3').verbose();
-
     db.all(sql, ['21'], (err, rows) => {
         if (err) {
           throw err;

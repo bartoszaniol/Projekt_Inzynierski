@@ -19,17 +19,19 @@ module.exports.getLastData = () => {
           returnValue.soilHumid = row.humid_value;
           returnDate = new Date(parseFloat(row.data));
           returnValue.soilDate = `${returnDate.toLocaleString()}`;
-        })
+        });
         resolve(returnValue);
+        // let sql = `SELECT * FROM soil WHERE watered = ?`;
+      //   db.all(sql, ['true'], (err, rows) => {
+      //     rows.forEach((row) => {
+      //       returnDate = new Date(parseFloat(row.data));
+      //       returnValue.soilDate = `${returnDate.toLocaleString()}`;
+      //     });
+      //   });
+      // });
+    // });
       });
     });
-    // let sql = 'SELECT * FROM soil DESC LIMIT 1';
-    // db.all(sql, (err, rows) => {
-    //   if (err) return console.err(err.message);
-    //   rows.forEach((row) => {
-
-    //   });
-    // });
     
   })
 }

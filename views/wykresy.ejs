@@ -474,6 +474,7 @@
 
 
       const chartOptions = (options, type) => {
+        console.log(options.data.datasets[0].data);
         let symbol;
         if(type ==='T'){
           symbol = '°C';
@@ -522,14 +523,14 @@
       optionsHumidMonth.data.datasets[0].backgroundColor = gradient;
 
       const dayTempOptions = chartOptions(optionsTempDay, 'T');
-      const weekTempOptions = chartOptions(optionsTempDay, 'T');
-      const fortnightTempOptions = chartOptions(optionsTempDay, 'T');
-      const monthTempOptions = chartOptions(optionsTempDay, 'T');
+      const weekTempOptions = chartOptions(optionsTempWeek, 'T');
+      const fortnightTempOptions = chartOptions(optionsTempFortnight, 'T');
+      const monthTempOptions = chartOptions(optionsTempMonth, 'T');
 
       const dayHumidOptions = chartOptions(optionsHumidDay, 'H');
-      const weekHumidOptions = chartOptions(optionsHumidDay, 'H');
-      const fortnightHumidOptions = chartOptions(optionsHumidDay, 'H');
-      const monthHumidOptions = chartOptions(optionsHumidDay, 'H');
+      const weekHumidOptions = chartOptions(optionsHumidWeek, 'H');
+      const fortnightHumidOptions = chartOptions(optionsHumidFortnight, 'H');
+      const monthHumidOptions = chartOptions(optionsHumidMonth, 'H');
 
 
 

@@ -10,25 +10,25 @@
           <div class="info">
             <div class="dane">
                 <div class="dane_nazwa">Temperatura w szklarni</div>
-                <div class="dane_wartosc"><%= values.insideTemp %>°C</div>
+                <div class="dane_wartosc"><%= parseFloat(values.insideTemp) % 1 !==0 ? parseFloat(values.insideTemp).toFixed(2) : parseFloat(values.insideTemp)%>°C</div>
                 <div class="dane_czas">Czas pomiaru</div>
                 <div class="dane_czas"><%= values.insideDate %></div>
             </div>
             <div class="dane">
                 <div class="dane_nazwa">Wilgotność powietrza w szklarni</div>
-                <div class="dane_wartosc"><%= values.insideHumid %>%</div>
+                <div class="dane_wartosc"><%= parseFloat(values.insideHumid) % 1 !==0 ? parseFloat(values.insideHumid).toFixed(2) : parseFloat(values.insideHumid) %>%</div>
                 <div class="dane_czas">Czas pomiaru</div>
                 <div class="dane_czas"><%= values.insideDate %></div>
             </div>
             <div class="dane">
                 <div class="dane_nazwa">Temperatura gleby</div>
-                <div class="dane_wartosc"><%= values.soilTemp %>°C</div>
+                <div class="dane_wartosc"><%= parseFloat(values.soilTemp) % 1 !==0 ? parseFloat(values.soilTemp).toFixed(2) : parseFloat(values.soilTemp) %>°C</div>
                 <div class="dane_czas">Czas pomiaru</div>
-                <div class="dane_czas"><%= values.soilDate %></div>
+                <div class="dane_czas"><%= values.soilTempDate %></div>
             </div>
             <div class="dane">
                 <div class="dane_nazwa">Wiglotność gleby</div>
-                <div class="wartosc"><% if(parseFloat(values.soilHumid) > 35) {%> 👌 <% } else { %> 🏜️ <% } %></div>
+                <div class="wartosc"><% if(parseFloat(values.soilHumid) > 500) {%> 👌 <% } else { %> 🏜️ <% } %></div>
                 <div class="dane_czas">Ostatnie podlanie</div>
                 <div class="dane_czas"><%= values.soilDate %></div>
             </div>

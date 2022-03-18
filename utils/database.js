@@ -5,7 +5,7 @@ const sqlite3 = require("sqlite3").verbose();
 //   // console.log("Ok");
 // });
 
-const db = new sqlite3.Database("./inz.db", sqlite3.OPEN_READWRITE, (err) => {
+const db = new sqlite3.Database("../../inz.db", sqlite3.OPEN_READWRITE, (err) => {
   if (err) return console.err(err);
   // console.log("Ok");
 });

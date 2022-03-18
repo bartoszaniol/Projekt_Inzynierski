@@ -1,6 +1,7 @@
 const Wykresy = require("../models/dane");
 const loginHelper = require('../utils/loginHelper');
 const bcrypt = require('bcryptjs');
+const spawn = require("child_process").spawn;
 
 exports.getWykresy = (req, res, next) => {
   // Wykresy.chartData().then((data) => {
@@ -43,12 +44,13 @@ exports.getSwiatlo = (req, res, next) => {
 };
 
 exports.postSwiatlo = (req, res, next) => {
-  console.log(req.colorpicker);
+  const pythonProcess = spawn('python',["/home/pi/Desktop/Inz/Strona/Projekt_Inzynierski/utils/zarowa.py", req.body.colorpicker]);
   res.render("stream", {
     pageTitle: "Stream",
     path: "stream",
     isLoggedIn: req.session.isLogged
   });
+
 };
 
 exports.getSzklarnia = (req, res, next) => {

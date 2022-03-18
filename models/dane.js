@@ -18,17 +18,18 @@ module.exports.getLastData = () => {
           returnValue.soilTemp = row.temp_value;
           returnValue.soilHumid = row.humid_value;
           returnDate = new Date(parseFloat(row.data));
-          returnValue.soilDate = `${returnDate.toLocaleString()}`;
+          returnValue.soilTempDate = `${returnDate.toLocaleString()}`;
         });
-        resolve(returnValue);
-        // let sql = `SELECT * FROM soil WHERE watered = ?`;
-      //   db.all(sql, ['true'], (err, rows) => {
-      //     rows.forEach((row) => {
-      //       returnDate = new Date(parseFloat(row.data));
-      //       returnValue.soilDate = `${returnDate.toLocaleString()}`;
-      //     });
-      //   });
-      // });
+        
+        let sql = `SELECT * FROM soil WHERE podlanie = ?`;
+        db.all(sql, ['true'], (err, rows) => {
+          rows.forEach((row) => {
+            returnDate = new Date(parseFloat(row.data));
+            returnValue.soilDate = `${returnDate.toLocaleString()}`;
+          });
+          resolve(returnValue);
+        });
+    //   });
     // });
       });
     });

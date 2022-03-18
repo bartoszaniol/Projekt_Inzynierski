@@ -10,18 +10,18 @@ const addToDb = async () => {
     // console.log(hashedPassword);
     // db.run(sql,["Bartek", hashedPassword])
 
-    let sql = `SELECT *
-            FROM inside
-            WHERE temp_value > ?`;
+    // let sql = `SELECT *
+    //         FROM soil
+    //         WHERE podlanie = ?`;
 
-    db.all(sql, ['21'], (err, rows) => {
-        if (err) {
-          throw err;
-        }
-        rows.forEach((row) => {
-            console.log(`${row.temp_value} ${row.humid_value}`);
-        });
-      });
+    // db.all(sql, ['true'], (err, rows) => {
+    //     if (err) {
+    //       throw err;
+    //     }
+    //     rows.forEach((row) => {
+    //         console.log(`${row.temp_value} ${row.humid_value}`);
+    //     });
+    //   });
 
 
 

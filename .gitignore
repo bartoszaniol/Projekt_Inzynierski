@@ -1,3 +1,4 @@
 inz.db
 node_modules
 sessions
+__pycache__

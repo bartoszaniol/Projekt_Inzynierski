@@ -56,10 +56,7 @@ module.exports.getCharts = () => {
     const todayDay = new Date().getDate();
     const todayMonth = new Date().getMonth();
     const todayYear = new Date().getFullYear();
-    // console.log(`${todayDay}.${todayMonth+1}.${todayYear}`); // Obecna data
     const miliNow = new Date().getTime(); // Obecne milisendu od '70
-    // const miliDay = new Date(miliNow - ).getTime();
-    // console.log(miliNow);
     const milisFromMidnight = new Date(`${todayMonth+1} ${todayDay}, ${todayYear} 00:00:00 GMT+01:00`).getTime(); // milisekundy od północy
     const milisFromWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate()-7).getTime();
     const milisFromFortnight = new Date(today.getFullYear(), today.getMonth(), today.getDate()-14).getTime();
@@ -71,7 +68,6 @@ module.exports.getCharts = () => {
         const parsedDate = parseFloat(row.data);
         const dayTime = new Date(parsedDate);
         const dayMonth = `${dayTime.getDate()}/${dayTime.getMonth()+1}`; // 7/11
-        // console.log(dayTime.getHours(),dayTime.getMinutes());
         if(parsedDate - milisFromMidnight > 0) { // Sprawdzenie czy to obecny dzien
           tempInsideDay.push(row.temp_value);
           humidInsideDay.push(row.humid_value);
@@ -152,8 +148,6 @@ class Chart {
     this.sumHumid = humid_values.reduce((a, b) => parseFloat(a) + parseFloat(b), 0)
     this.avgTemp = this.sumTemp / this.temp_values.length
     this.avgHumid = this.sumHumid / this.humid_values.length
-    // console.log(this.minTemp,this.maxTemp,this.avgTemp)
-    // console.log(this.minHumid,this.maxHumid,this.avgHumid)
   }
 
   makeChart(input) {
@@ -197,17 +191,47 @@ class Chart {
           chartLabel = `Wykres wilgotnosci powietrza (miesiac)`;
           break;
       }
+    };
+
+    const segregatedDates = {};
+    const segregatedDatesTimes = {};
+    // labels and data
+    if(this.label !== 'day'){
+      for (const [index, date] of this.date.entries()) {
+        if(segregatedDates.hasOwnProperty(date)){
+          segregatedDates[date] = segregatedDates[date] + parseFloat(chartValues[index]);
+          segregatedDatesTimes[date] = segregatedDatesTimes[date] + 1;
+        } else {
+          segregatedDates[date] = parseFloat(chartValues[index]);
+          segregatedDatesTimes[date] = 1;
+        };
+      };
+      // console.log(segregatedDates);
+      // console.log(segregatedDatesTimes);
+    };
+    
+    //
+    let finalLabels = [];
+    let finalValues = [];
+    if(this.label==='day') {
+    finalValues = chartValues;
+    finalLabels = this.date;
+    }else {
+      for (const key in segregatedDates) {
+        finalLabels.push(key);
+        const finalAvgTemp = segregatedDates[key] / segregatedDatesTimes[key]
+        // console.log(finalAvgTemp)
+        finalValues.push(finalAvgTemp.toFixed(2))
+      }
     }
 
-    
-
-
+    // console.log(finalValues)
     const chOptions = {
       type: 'line',
       data: {
-        labels:this.date,
+        labels:finalLabels,
         datasets:[{
-          data: chartValues,
+          data: finalValues,
           label: chartLabel,
           fill: true,
           borderColor: '#37c7e0',

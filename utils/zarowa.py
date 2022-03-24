@@ -12,4 +12,4 @@ bulb.set_rgb(RGBValue[0], RGBValue[1], RGBValue[2],)
 
 
 # print("DONE")
-sys.stdout.flush()
+# sys.stdout.flush()

@@ -1,3 +1,4 @@
+const {PythonShell} = require('python-shell')
 const Wykresy = require("../models/dane");
 const loginHelper = require('../utils/loginHelper');
 const bcrypt = require('bcryptjs');
@@ -44,7 +45,8 @@ exports.getSwiatlo = (req, res, next) => {
 };
 
 exports.postSwiatlo = (req, res, next) => {
-  const pythonProcess = spawn('python',["/home/pi/Desktop/Inz/Strona/Projekt_Inzynierski/utils/zarowa.py", req.body.colorpicker]);
+  PythonShell.run('/home/pi/Desktop/Inz/Strona/Projekt_Inzynierski/utils/zarowa.py', {args: [req.body.colorpicker]}, () => {});
+  // spawn('python',["/home/pi/Desktop/Inz/Strona/Projekt_Inzynierski/utils/zarowa.py", req.body.colorpicker]);
   res.render("stream", {
     pageTitle: "Stream",
     path: "stream",

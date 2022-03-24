@@ -474,7 +474,7 @@
 
 
       const chartOptions = (options, type) => {
-        console.log(options.data.datasets[0].data);
+        // console.log(options.data.datasets[0].data);
         let symbol;
         if(type ==='T'){
           symbol = '°C';
@@ -492,7 +492,7 @@
             ticks: {
               beginAtZero: true,
               callback: function (value) {
-                return `${value} ${symbol}`;
+                return `${value.toFixed(1)} ${symbol}`;
               }
             }
           }

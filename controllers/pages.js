@@ -67,7 +67,8 @@ exports.getLogin = (req, res, next) => {
   res.render("login", {
     pageTitle: "Logowanie",
     path: "login",
-    isLoggedIn: req.session.isLogged
+    isLoggedIn: req.session.isLogged,
+    errorMessage: req.flash("error")
   });
 };
 
@@ -78,6 +79,7 @@ exports.postLogin = (req, res, next) => {
   loginHelper.findUser(userName)
   .then((user) => {
     if(!user){
+      req.flash('error','Bledne dane');
       return res.redirect('/login');
     }
     bcrypt.compare(userPassword, user.password)
@@ -86,10 +88,12 @@ exports.postLogin = (req, res, next) => {
         req.session.isLogged = true;
         return res.redirect('/');
       }
+      req.flash('error','Bledne dane');
       res.redirect('/login')
     })
     .catch((err) => {
       console.log(err);
+      req.flash('error','Bledne dane');
       res.redirect('/login');
     })
   })

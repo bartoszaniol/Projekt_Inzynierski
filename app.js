@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const SQLiteStore = require('connect-sqlite3')(session);
+const flash = require("connect-flash")
 
 const mainRoute = require('./routes/main');
 const errorController = require('./controllers/error');
@@ -20,7 +21,9 @@ app.use(session({
     secret: 'supersecretvaluekekw',
     resave: false,
     saveUninitialized: false
-}))
+}));
+
+app.use(flash());
 
 app.use(mainRoute);
 

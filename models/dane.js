@@ -57,7 +57,7 @@ module.exports.getCharts = () => {
     const todayMonth = new Date().getMonth();
     const todayYear = new Date().getFullYear();
     const miliNow = new Date().getTime(); // Obecne milisendu od '70
-    const milisFromMidnight = new Date(`${todayMonth+1} ${todayDay}, ${todayYear} 00:00:00 GMT+01:00`).getTime(); // milisekundy od północy
+    const milisFromMidnight = new Date(`${todayMonth+1} ${todayDay}, ${todayYear} 00:00:00 GMT+02:00`).getTime(); // milisekundy od północy
     const milisFromWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate()-7).getTime();
     const milisFromFortnight = new Date(today.getFullYear(), today.getMonth(), today.getDate()-14).getTime();
     const milisFromMonth = new Date(today.getFullYear(), today.getMonth(), today.getDate()-30).getTime();

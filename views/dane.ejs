@@ -28,7 +28,7 @@
             </div>
             <div class="dane">
                 <div class="dane_nazwa">Wiglotność gleby</div>
-                <div class="wartosc"><% if(parseFloat(values.soilHumid) > 500) {%> 👌 <% } else { %> 🏜️ <% } %></div>
+                <div class="wartosc"><% if(parseFloat(values.soilHumid) > 800) { %> 👌 <% } else if(parseFloat(values.soilHumid) > 720){ %> 🥀 <% } else{%> 🏜️ <% } %> </div>
                 <div class="dane_czas">Ostatnie podlanie</div>
                 <div class="dane_czas"><%= values.soilDate %></div>
             </div>

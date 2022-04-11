@@ -2,6 +2,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Arsenal&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
 <%- include('includes/navigation.ejs') %>
@@ -14,9 +15,12 @@
             <label for="password">Haslo</label>
             <input type="password" name="password" id="password">
             <div>
-                <button type="submit">Zaloguj</button>
+                <button type="submit" class="bn30">Zaloguj</button>
             </div>
         </form>
     </div>
+    <% if(errorMessage){ %> 
+    <div class="error"><%= errorMessage %> </div>
+    <% } %> 
 </main>
 <%- include('includes/end.ejs') %>

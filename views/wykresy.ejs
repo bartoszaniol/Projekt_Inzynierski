@@ -293,9 +293,12 @@
           </div>
         </div>
       </div>
+      <div class="hidden"><div class="alert" id="alert">Przedstawione wykresy pokazują średnie wartości z danych dni</div></div>
     <script> 
 
     let index = 0;
+    const alert = document.getElementById('alert')
+
     const etempDay = document.getElementById('tempDay')
     const etempWeek = document.getElementById('tempWeek')
     const etempFortnight = document.getElementById('tempFortnight')
@@ -378,6 +381,7 @@
       infoHumidMinMonth.classList.toggle("hidden")
       infoHumidMaxMonth.classList.toggle("hidden")
     }
+
     const btnDay = document.getElementById('toggle').addEventListener('click', () => {
       switch(index){
         case 0:
@@ -395,6 +399,9 @@
       if(index !== 0) {
         toggleDay();
         index = 0;
+        if(!(alert.parentElement.classList.contains("hidden"))) {
+          alert.parentElement.classList.toggle("hidden");
+        }
       }
     })
 
@@ -415,6 +422,9 @@
       if(index !== 1){
         toggleWeek();
         index = 1
+        if(alert.parentElement.classList.contains("hidden")) {
+          alert.parentElement.classList.toggle("hidden");
+        }
       }
       
     })
@@ -437,6 +447,9 @@
       if(index !== 2) {
         toggleFortnight();
         index = 2;
+        if(alert.parentElement.classList.contains("hidden")) {
+          alert.parentElement.classList.toggle("hidden");
+        }
       }
     })
 
@@ -457,6 +470,9 @@
       if(index !== 3) {
         toggleMonth();
         index = 3;
+        if(alert.parentElement.classList.contains("hidden")) {
+          alert.parentElement.classList.toggle("hidden");
+        }
       }
     })
 
@@ -471,7 +487,6 @@
       const optionsHumidWeek = <%- JSON.stringify(chartData[1].humidWeek[0]) %>;
       const optionsHumidFortnight = <%- JSON.stringify(chartData[2].humidFortnight[0]) %>;
       const optionsHumidMonth = <%- JSON.stringify(chartData[3].humidMonth[0]) %>;
-
 
       const chartOptions = (options, type) => {
         // console.log(options.data.datasets[0].data);
@@ -494,6 +509,11 @@
               callback: function (value) {
                 return `${value.toFixed(1)} ${symbol}`;
               }
+            }
+          },
+          x: {
+            ticks: {
+              maxTicksLimit: 24,
             }
           }
         }}

@@ -10,10 +10,14 @@
     <h1>Logowanie</h1>
     <div>
         <form action="/login" method="POST">
-            <label for="name">Nazwa</label>
-            <input type="text" name="name" id="name">
-            <label for="password">Haslo</label>
-            <input type="password" name="password" id="password">
+            <div class="inputField">
+                <label for="name">Nazwa</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <div class="inputField">
+                <label for="password">Haslo</label>
+                <input type="password" name="password" id="password">
+            </div>
             <div>
                 <button type="submit" class="bn30">Zaloguj</button>
             </div>

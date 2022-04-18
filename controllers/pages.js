@@ -5,9 +5,7 @@ const bcrypt = require('bcryptjs');
 const spawn = require("child_process").spawn;
 
 exports.getWykresy = (req, res, next) => {
-  // Wykresy.chartData().then((data) => {
   Wykresy.getCharts().then((data) => {
-    // console.log(data);
     res.render("wykresy", {
       pageTitle: "Wykresy",
       path: "wykresy",
@@ -52,7 +50,6 @@ exports.postSwiatlo = (req, res, next) => {
     path: "stream",
     isLoggedIn: req.session.isLogged
   });
-
 };
 
 exports.getSzklarnia = (req, res, next) => {
@@ -79,7 +76,7 @@ exports.postLogin = (req, res, next) => {
   loginHelper.findUser(userName)
   .then((user) => {
     if(!user){
-      req.flash('error','Bledne dane');
+      req.flash('error','Wprowadz poprawne dane');
       return res.redirect('/login');
     }
     bcrypt.compare(userPassword, user.password)
@@ -88,12 +85,12 @@ exports.postLogin = (req, res, next) => {
         req.session.isLogged = true;
         return res.redirect('/');
       }
-      req.flash('error','Bledne dane');
+      req.flash('error','Wprowadz poprawne dane');
       res.redirect('/login')
     })
     .catch((err) => {
       console.log(err);
-      req.flash('error','Bledne dane');
+      req.flash('error','Wprowadz poprawne dane');
       res.redirect('/login');
     })
   })
@@ -104,7 +101,6 @@ exports.postLogin = (req, res, next) => {
 };
 
 exports.postLogout = (req, res, next) => {
-  // auth
   req.session.destroy((err) => {
     res.redirect('/');
   });

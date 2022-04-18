@@ -9,7 +9,7 @@ c = conn.cursor()
 
 
 insideValues = (None, None)
-while(insideValues[0] == None and insideValues[1] == None):
+while(insideValues[0] == None and insideValues[1] == None and insideValues[1] <= 100):
     insideValues = getInside()
 
 soilValues = (None, None)

@@ -29,11 +29,8 @@ module.exports.getLastData = () => {
           });
           resolve(returnValue);
         });
-    //   });
-    // });
       });
     });
-    
   })
 }
 
@@ -242,99 +239,3 @@ class Chart {
     return [chOptions, getter];
   }
 }
-
-// const tempSoil = [];
-// const humidSoil = [];
-// const dateSoil = [];
-// const inside = {
-//     temperature: [],
-//     humidity: [],
-//     date: []
-// }
-
-// sql = `SELECT * FROM soil`;
-// db.all(sql, (err,rows) => {
-//     if(err) return console.err(err.message);
-//     console.log(rows);
-//     rows.forEach((row) => {
-//         tempInside.push(row.temp_value);
-//         humidInside.push(row.humid_value);
-//         tempSoil.push(row.data)
-//     });
-// });
-
-// const Soil = {
-//     temperature: tempSoil,
-//     humidity: humidSoil,
-//     date: dateSoil
-// }
-
-// const sql = `SELECT * FROM soil`;
-// db.all(sql, (err,rows) => {
-//     if(err) return console.err(err.message);
-//     rows.forEach((row) => {
-//         console.log(row);
-//     });
-// });
-
-// module.exports.chartData = () => {
-//   return new Promise((resolve, reject) => {
-//     const tempInside = [];
-//     const humidInside = [];
-//     const dateInside = [];
-//     let sql = `SELECT * FROM inside`;
-//     db.all(sql, (err, rows) => {
-//       if (err) return console.err(err.message);
-//       // console.log(rows);
-//       rows.forEach((row) => {
-//         tempInside.push(row.temp_value);
-//         humidInside.push(row.humid_value);
-//         dateInside.push(row.data);
-//       });
-//       const inside = {
-//         temperature: tempInside,
-//         humidity: humidInside,
-//         date: dateInside,
-//       };
-//       // console.log(inside);
-//       resolve(inside);
-//     });
-//   })
-// };
-
-// const chartOptions = {
-//   type: "line",
-//   data: {
-//     labels: ["Red", "Blue", "", "Green", "Purple", "Orange"],
-//     datasets: [
-//       {
-//         label: 'KEKEKE',
-//         data: [12, 19, 31, 5, 2, 3],
-//         backgroundColor: [
-//           "rgba(77, 255, 12, 0.3)",
-//           "rgba(54, 162, 235, 0.2)",
-//           "rgba(255, 206, 86, 0.2)",
-//           "rgba(75, 192, 192, 0.2)",
-//           "rgba(153, 102, 255, 0.2)",
-//           "rgba(255, 159, 64, 0.2)",
-//         ],
-//         borderColor: [
-//           "rgba(255, 99, 132, 1)",
-//           "rgba(54, 162, 235, 1)",
-//           "rgba(255, 206, 86, 1)",
-//           "rgba(75, 192, 192, 1)",
-//           "rgba(153, 102, 255, 1)",
-//           "rgba(255, 159, 64, 1)",
-//         ],
-//         borderWidth: 1,
-//       },
-//     ],
-//   },
-//   options: {
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//       },
-//     },
-//   },
-// };

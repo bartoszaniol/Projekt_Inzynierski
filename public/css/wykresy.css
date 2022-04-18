@@ -46,6 +46,10 @@
     display: none;
 }
 
+.buttons {
+  margin-left: 80px;
+}
+
 .bn30 {
     border: 5em;
     cursor: pointer;
@@ -93,6 +97,8 @@
 
   .alert {
     display: flex;
+    font-weight: bold;
+    color: black;
     justify-content: center;
     align-items: center;
     text-align: center;
